@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/39c8bc8c71.js"></script>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="../css/modal.css">
+<!--    <link rel="stylesheet" href="../css/style.css">-->
+    <link rel="stylesheet" href="../css/upload.css">
+</head>
+
+<body>
+<div id="particles-js">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><a href="/about">About</a></li>
+                <li><a href="/wearable">Wearable</a></li>
+                <li><a href="/food">Food</a></li>
+                <li><a href="/blogs">Blogs</a></li>
+                <li><a href="/upload">Upload a blog</a></li>
+                <li><a href="/user_uploads">User Upload</a></li>
+                <li><a href="/favourites">Favourites</a></li>
+                <li><a href="/signout">Sign Out</a></li>
+            </ul>
+        </div>
+        <!--put everything in newww -->
+        <div id="page-content-wrapper">
+            <nav class="topnav"><div class="nav-wrapper">
+                <ul>
+                    <li><a id="menu-toggle"><i class="fas fa-align-justify"></i></a></li>
+                    <li><h1>TrendGetter</h1></li>
+                </ul>
+            </div></nav>
+            <div class="newww">
+                <div class="upload">
+                    <form action="/upload-blog" method="POST" id="uploadForm">
+                        <h1>UPLOAD A BLOG</h1>
+                        <div class="row">
+                            <input type="text" name="text" id="text"/>
+                            <label for="text">Blog Title</label>
+                        </div>
+                        <div class="row">
+                            <input type="file" name="file" id="file"/>
+                            <label for="file">Image</label>
+                        </div>
+                        <div class="row">
+                            <textarea name="textarea" id="textarea"></textarea>
+                            <label for="textarea">Content</label>
+                        </div>
+                        <button type="submit" tabindex="0">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const fileSelector = document.getElementById('file');
+    fileSelector.addEventListener('change', (event) => {
+    const fileList = event.target.files[0];
+    console.log(fileList);
+    var form = new FormData();
+    form.append("img", fileList);
+    var request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:3000/upload-img");
+    request.send(form);
+});
+</script>
+<script src="/node_modules/particles.js/particles.js"></script>
+<script src="/node_modules/particles.js/demo/js/app.js"></script>
+<script type="text/javascript" src="/js/home.js"></script>
+<script type="text/javascript" src="../js/script.js"></script>
+</body>
+</html>
